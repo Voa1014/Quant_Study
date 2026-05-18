@@ -304,6 +304,11 @@ J = 3 × K - 2 × D
 - 滑点：真实成交价格与下单时预期的价格偏差`set_slippage(object, type = None, ref = None)`
 - 成交量比例：根据实际行情限制每个订单的成交量`set_option('order_volume_ratio',value)`
 - 动态复权模式：设置真实价格，建议开启`set_option('use_real_price', value)`
-# TODO 24.7.3学习
+- 
+## 定时函数
+- 设定回测和模拟交易中运行时间及频率
+- 可分为：月度、周度、日度\
+例：run_monthly(func, monthday, time = 'open', reference_security), func:用户自定义`context`参数的函数，必须是全局函数；monthday：指定每月的第几个交易日执行函数。值为负数时，表示每月倒数第几个交易日执行函数；time：字符串格式；reference_security：表示时间的参照指标，
+# TODO 25.7.4学习
 
 ---
