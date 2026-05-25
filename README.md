@@ -309,6 +309,24 @@ J = 3 × K - 2 × D
 - 设定回测和模拟交易中运行时间及频率
 - 可分为：月度、周度、日度\
 例：run_monthly(func, monthday, time = 'open', reference_security), func:用户自定义`context`参数的函数，必须是全局函数；monthday：指定每月的第几个交易日执行函数。值为负数时，表示每月倒数第几个交易日执行函数；time：字符串格式；reference_security：表示时间的参照指标，
-# TODO 25.7.4学习
+
+## 交易函数
+- 交易数量：`order(security, amount, style=None, side='long',pindex=0)`
+security:股票代码\
+amount:交易数量,负数表示卖出\
+style:下单类型\
+side:short空/long多\
+pindex:仓位号
+
+- 股票价值：`order_value(security, style=None, side = 'lone',pindex = 0)`
+  按卖出价值为5000元的股票：`order_value('600000.XSHG', 0-5000)`
+
+- 目标数量：`order_target(security,  style=None, side='long',pindex=0,close_today=False)`
+买入平安银行所有股票到100股：`order_target('000001.XSHG', 100)`
+
+- 未完成订单：`get_open_orders()`
+- 撤单函数：`cancel_order(order)`
+- 账户出入金：`inout_cash(cash, pindex=0)`,cash：浮点数，负数表示出金
+# TODO 26.7.5学习
 
 ---
