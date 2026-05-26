@@ -327,6 +327,11 @@ pindex:仓位号
 - 未完成订单：`get_open_orders()`
 - 撤单函数：`cancel_order(order)`
 - 账户出入金：`inout_cash(cash, pindex=0)`,cash：浮点数，负数表示出金
-# TODO 26.7.5学习
+
+## 交易对象
+- Order对象：**订单处理流程**，订单创建--> 订单检查 --> 报单 --> 确认委托 -->撮合
+- Trade对象：**订单成交相关信息**，
+  
+# TODO 27.7.6学习
 
 ---
