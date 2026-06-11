@@ -294,44 +294,48 @@ J = 3 × K - 2 × D
 > 若无前一日K、D值，则可分别用50代替
 
 ## 策略框架
+
 - 框架：初始化 + 策略函数(周期循环)
   - 初始化：设定投资标的（平安银行）、设定策略运行周期
   - 策略函数：例如，若上一时间点价格高出五天平均价1%，则全仓买入；若低于5天均价，则空仓卖出；
 
 ## 设置函数
-- 基准：设定业绩比较基准`set_benchmark(security)`
+
+- 基准：设定业绩比较基准 `set_benchmark(security)`
 - 佣金/印花锐:股票类每笔交易时的手续费为：买入时佣金万分之三，卖出时佣金万分之三+千分之一印花税
-- 滑点：真实成交价格与下单时预期的价格偏差`set_slippage(object, type = None, ref = None)`
-- 成交量比例：根据实际行情限制每个订单的成交量`set_option('order_volume_ratio',value)`
-- 动态复权模式：设置真实价格，建议开启`set_option('use_real_price', value)`
+- 滑点：真实成交价格与下单时预期的价格偏差 `set_slippage(object, type = None, ref = None)`
+- 成交量比例：根据实际行情限制每个订单的成交量 `set_option('order_volume_ratio',value)`
+- 动态复权模式：设置真实价格，建议开启 `set_option('use_real_price', value)`
 - 
+
 ## 定时函数
+
 - 设定回测和模拟交易中运行时间及频率
-- 可分为：月度、周度、日度\
-例：run_monthly(func, monthday, time = 'open', reference_security), func:用户自定义`context`参数的函数，必须是全局函数；monthday：指定每月的第几个交易日执行函数。值为负数时，表示每月倒数第几个交易日执行函数；time：字符串格式；reference_security：表示时间的参照指标，
+- 可分为：月度、周度、日度
+  例：run_monthly(func, monthday, time = 'open', reference_security), func:用户自定义 `context`参数的函数，必须是全局函数；monthday：指定每月的第几个交易日执行函数。值为负数时，表示每月倒数第几个交易日执行函数；time：字符串格式；reference_security：表示时间的参照指标，
 
 ## 交易函数
-- 交易数量：`order(security, amount, style=None, side='long',pindex=0)`
-security:股票代码\
-amount:交易数量,负数表示卖出\
-style:下单类型\
-side:short空/long多\
-pindex:仓位号
 
+- 交易数量：`order(security, amount, style=None, side='long',pindex=0)`
+  security:股票代码amount:交易数量,负数表示卖出style:下单类型side:short空/long多pindex:仓位号
 - 股票价值：`order_value(security, style=None, side = 'lone',pindex = 0)`
   按卖出价值为5000元的股票：`order_value('600000.XSHG', 0-5000)`
-
 - 目标数量：`order_target(security,  style=None, side='long',pindex=0,close_today=False)`
-买入平安银行所有股票到100股：`order_target('000001.XSHG', 100)`
-
+  买入平安银行所有股票到100股：`order_target('000001.XSHG', 100)`
 - 未完成订单：`get_open_orders()`
 - 撤单函数：`cancel_order(order)`
 - 账户出入金：`inout_cash(cash, pindex=0)`,cash：浮点数，负数表示出金
 
 ## 交易对象
+
 - Order对象：**订单处理流程**，订单创建--> 订单检查 --> 报单 --> 确认委托 -->撮合
 - Trade对象：**订单成交相关信息**，
-  
-# TODO 27.7.6学习
+
+## 策略信息
+
+- `Context对象`：策略信息总览，包含账户、时间等信息；
+- `Position对象`:输出持有的标的的信息
+
+# TODO 28.7.7学习
 
 ---
