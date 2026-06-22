@@ -358,7 +358,24 @@ J = 3 × K - 2 × D
 | `locked_cash`       | 数值型 | 挂单锁住的资金                                         |
 | `type`              | 字符串 | 账户所属类型                                           |
 
+## 财务数据
+- `get_fundamentals()`函数:查询财务数据
+get_fundamentals(query_object, date=None, statDate=None)\
+date和dtatDate参数只能传入一个,传入date时，查询指定日期date收盘后所能看到的最近(除市值表外为最近一个季度，市值表为最近一天)的数据；传入 statDate 时，查询 statDate 指定的季度或者年份的财务数据\
+query_object：一个`sqlalchemy.orm.query.Query`对象，可以通过全局的 query 函数获取Query对象。
 
-# TODO 29.8.2学习
+- `query()`函数：查询数据API，可以是整张表，也可以是表中的多个字段或计算出的结果
+  filter:填写过滤条件,多个过滤条件可用逗号隔开,或and,or\
+  order_by:填写排序条件\
+  limit:限制返回的个数\
+  group_by:分组统计
+
+
+- `get_fundamental_continuousl(query_object, end_date=None, count=None, panel=True)`函数:查询多日财务数据\
+end_date:获取一个字符串(格式类似'2015-10-15)或者datetime对象\
+count:获取end_date前count个日期的数据，count须小于500\
+panel：默认panel=True，返回一个pandas.Panel；建议设置panel为False，返回等效的dataframe
+
+# TODO 30.8.3学习
 
 ---
