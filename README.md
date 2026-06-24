@@ -376,6 +376,36 @@ end_date:获取一个字符串(格式类似'2015-10-15)或者datetime对象\
 count:获取end_date前count个日期的数据，count须小于500\
 panel：默认panel=True，返回一个pandas.Panel；建议设置panel为False，返回等效的dataframe
 
-# TODO 30.8.3学习
+
+## 获取成分股数据
+- 指数成分股函数:查询指定指数指定日期可加以的成分股列表 `get_index_stocks(index_symbol, data=None)`\
+  index_symbol:指数代码\
+  data、statdate:获取一个字符串或者datetime对一项\
+  返回：股票代码的list
+
+- 行业成分股：查询指定行业的所有股票`get_industry_stocks(industry_code, data=None)`\
+industry_code:行业编码\
+date、statdate:获取一个字符串或者datetime对象\
+返回：股票代码的list
+
+- 概念成分股函数：查新指定概念板块的所有股票 `get_concept_stocks(concept_code, data=None)`\
+  concept_code:行业编码\
+  date/statdate:获取一个字符串或者datetime对象\
+  返回：股票代码的list
+
+
+## 标的信息
+- 获取所有标的信息：获取平台支持的所有股票、基金、指数、期货、期权、信息 `get_all_securities(types=[], date=None)`\
+  types:security种类，list类型。支持'stock'、'fund'、'index'、'futures'等\
+  date:获取一个字符串或者datetime对象\
+  返回：dataframe
+
+- 单个标的信息：获取单个标的信息，包括中文名称，简称，上市日期等等 `get_security_info(code, date=None)`\
+code:证券代码\
+date:获取一个字符串或者datetime对象\
+返回：返回数据对象
+
+
+# TODO 32.8.5学习
 
 ---
