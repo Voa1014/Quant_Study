@@ -405,7 +405,27 @@ code:证券代码\
 date:获取一个字符串或者datetime对象\
 返回：返回数据对象
 
+## 交易数据
+- 获取行情数据：获取证券行情数据，可查询多个标的多个数据字段
+  `get_price(securities, start_date=None, end_date=None, fields=None,frequency='daily,skip_paused=False, fq='pre),count=None, panel=True, fill_paused=False)`\
 
-# TODO 32.8.5学习
+- 获取龙虎榜数据：get_billboard_list(stock_list, start_date,end_date, count)\
+  stock_list:股票代码list,值为None时返回指定日期的所有股票\
+  start_date:开始日期\
+  end_date:结束日期\
+  count:交易日数量\
+
+## 量化选股
+- 量化选股：利用数量化的方法选择股票组合，期望该股票组合能够获得超越基准收益率的投资行为
+  注意事项：
+    - 分配多股，减少单股重仓的情况
+    - 全面研究个股基本面，增强个股判断逻辑和支撑
+    - 主动投资而非被动投资
+    - 只是提高胜率的工具之一
+
+- 技术面选股：利用各种技术理论获技术指标来分析和预测股票的未来价格趋势
+- 基本面选股：通过对一家上市公司在发展过程中面临的外部因素和自身因素进行分析，对其未来的发展前景进行预测，判断该上市公司的股票是否值得买进
+
+# TODO 34.9.2学习
 
 ---
