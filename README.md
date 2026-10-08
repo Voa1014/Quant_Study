@@ -526,6 +526,70 @@ date:获取一个字符串或者datetime对象\
 ### 趋向指标
 - 定义：趋向指标（DMI）又称动向指标。其基本原理是通过分析股价在上升及下跌过程中的**均衡**，即**供需关系受价格**的变动由**均衡到失衡**的循环过程，从而提供对**趋势判断**的依据。
 - 原理：在大多数指标中都是以每一日的收盘价走势及升幅、跌幅的累计数来计算出不同的分析数据,其不足之处在于**忽略了每一日的高价低价的波动幅度**。而DMI指标则是把**每日的高低波动的幅度因素**计算在内,来分析预测未来的走势
-# TODO 40.10.2
+- MACD:平滑异同移动平均线；一般用来研判股票价格变化的方向、强度和趋势。\
+快线DIFF上穿慢线DEA，红柱出现的第一天，称为**金叉**，是**买进持有**的时机
+快线DIFF下穿慢线DEA，绿柱出现的第一天，称为**死叉**，是**卖出空仓**的时机\
+  ```python
+  from jqlib.technical_analysis import *
+  MACD(security_list, check_date,SHORT,LONG,MID)
+  # security_list:股票列表
+  # check_date:要查询数据的日期
+  # SHORT:快线【短周期均线】
+  # LONG:慢线【长周期均线】
+  # MID:计算signalperiod天的macd的EMA均线
+  ```
+- EMV:简易波动指标；股票中间价的相对波动幅度是以相对成交除以相对振幅作为衡量股票中间价波动百分比的基数。\
+**EMV值增加**代表成交量增加，这是**价格上升**阶段的正常信号。**EMV下跌**代表了缩量下降，这也是**价格下跌**阶段的正常信号。\
+  计算：
+  $$
+  \begin{aligned}
+  A &= (今日最高 + 今日最低) / 2 \\
+  B &= (前日最高 + 前日最低) / 2 \\
+  C &= 今日最高 - 今日最低 \\
+  EM &= (A - B) \times C / 今日成交额 \\
+  EMV &= N日内EM的累和 \\
+  MAEMV &= EMV的M日简单移动平均\\
+  N &=14 \quad M = 9
+  \end{aligned}
+  $$
+  当EMV**从下到上**穿过0轴时，**买入**；\
+  当EMV**从上到下**穿过0轴时，**卖出**；\
+  ```python
+  from jqlib.technical_analysis import *
+  EMV(security_list, check_date, N, M, unit = '1d',
+  include_now = True, fq_ref_date = None)
+  # security_list:股票列表
+  # check_date:要查询数据的日期
+  # N:N日内EM累加和
+  # M:MAEMV;常见取N = 14,M = 9
+  # unit:统计周期，默认为'1d'
+  # include_now:是否包含当前周前，默认为True
+  # fq_ref_date:复权基准日，默认为None
+  ```
+
+- UOS:终极波动指标；UOS指标是一种多方位功能的指标，除了趋势确认及超买超卖方面的作用之外，它的“突破”讯号不仅可以提供最适当的交易时机之外，更可以进一步加强指标的可靠度。\
+  计算：\
+  $$
+  \begin{aligned}
+  TH &= MAX(今日最高价，昨日收盘价) \\
+  TL &= MIN(今日最低价，昨日收盘价) \\
+  ACC1 &= (收盘价-TL)的N1日累和/(TH-TL的N1日累和)\\
+  ACC2 &= (收盘价-TL)的N2日累和/(TH-TL的N2日累和)\\
+  ACC3 &= (收盘价-TL)的N3日累和/(TH-TL的N3日累和)\\
+  UOS &= (ACC1*N2*N3+ACC2*N2*N3+ACC3*N1*N2)*100/(N1*N2+N1*N3+N2*N3) \\
+  MAUOS &= UOS的M日指数平滑移动平均\\
+  N1 &=7 \quad N2=14 \quad N3=28 \quad M=6
+  \end{aligned}
+  $$ 
+
+  UOS短线抄底：UOS上穿50\
+  UOS短线卖顶：UOS下穿65\
+  UOS中长期抄底：UOS上穿35\
+  UOS中长期卖顶：UOS下穿70
+  ```python
+  from jqlib.technical_analysis import *
+  UOS(security_list, check_date, N1 = 7, N2 = 14, N3 = 28, M= 6, unit = '1d', include_now = True, fq_ref_date = None)
+  ```
+# TODO 42.10.4
 
 ---
